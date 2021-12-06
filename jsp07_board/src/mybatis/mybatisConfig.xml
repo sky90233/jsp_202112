@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!--구성--> 
+	
+	<!-- null 값 허용 view에서 불어올때 써줄필요 없는 경우가있을수 있음  null-->
+	<!-- <settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings> -->
+	
+ <!--환경 기본 = "개발"-->
+  <environments default="development">
+   	<!--환경 id="개발"  -->
+    <environment id="development">
+  	  <!-- MANAGED: 컨테이너가 트랜잭션을 관리 -->
+  	  <!--트랜잭션 : 하나가 실패/성공 하면 모든행위가 실패/성공 하게되는 하나의 작업단위-->
+  	  <!--트랜잭션 템플릿 클래스를 만들기 위한 DI용으로 사용되는 객체로 실제 트랜잭션 처리할 때 잘 사용하지 않는다  -->
+      <transactionManager type="MANAGED"/>
+      <!-- 데이터 소스 환경 -->
+      
+      <!-- POOLED : 컨넥션 풀을 사용하겠다 -->
+      <dataSource type="POOLED">
+        <!--성질  -->
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="username" value="hr"/>
+        <property name="password" value="hr"/>
+      </dataSource>
+    </environment>
+  </environments>
+<!--매퍼파일들 매핑 -->
+  <mappers><!--제도자 -->
+    <mapper resource="mybatis/BoardMapper.xml"/>
+    <mapper resource="mybatis/BoardFileMapper.xml"/>
+  	<mapper resource="mybatis/MemberMapper.xml"/>
+  </mappers>
+</configuration>
